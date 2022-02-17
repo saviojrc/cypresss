@@ -7,22 +7,33 @@ describe.only('Tickets', () => {
     beforeEach(() => cy.visit(uri));
 
     it("fills all the text input fields ", () => {
-        var firtName = cy.get("#first-name");
-        var lastName = cy.get("#last-name");
-        var email = cy.get("#email");
-        var specialRequest = cy.get("#requests");
-        var signature = cy.get("#signature")
-
-
-        firtName.type(name);
-        lastName.type(secondName);
-        email.type("saviojrc.1988@gmail.com");
-        specialRequest.type("Vegetarian");
-        signature.type(name + " " + secondName);
+        cy.get("#first-name").type(name);
+        cy.get("#last-name").type(secondName);
+        cy.get("#email").type("saviojrc.1988@gmail.com");
+        cy.get("#requests").type("Vegetarian");
+        cy.get("#signature").type(name + " " + secondName);
 
     });
 
-    it.only("has 'TICKTBOX' header's heading", () => {
+    it("Select 'two' tickets  ", () => {
+        cy.get("#ticket-quantity").select("2");
+    });
+
+    it("Select 'vip'  ticket type", () => {
+        cy.get("#vip").check();
+    });
+
+    it("Select 'social media' checkbox", () => {
+        cy.get("#social-media").check();
+    });
+
+    it.only("Selects 'friend' and 'publication' , then uncheck 'fried' ", () => {
+        cy.get("#friend").check();
+        cy.get("#publication").check();
+        cy.get("#friend").uncheck();
+    });
+
+    it("has 'TICKTBOX' header's heading", () => {
 
     });
 });
