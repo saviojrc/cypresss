@@ -27,13 +27,13 @@ describe.only('Tickets', () => {
         cy.get("#social-media").check();
     });
 
-    it.only("Selects 'friend' and 'publication' , then uncheck 'fried' ", () => {
+    it("Selects 'friend' and 'publication' , then uncheck 'fried' ", () => {
         cy.get("#friend").check();
         cy.get("#publication").check();
         cy.get("#friend").uncheck();
     });
 
-    it("has 'TICKTBOX' header's heading", () => {
-
+    it.only("has 'TICKTBOX' header's heading", () => {
+        cy.get("header h1").should("contain", "TICKETBOX");
     });
 });
