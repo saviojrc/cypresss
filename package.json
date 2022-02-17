@@ -1,0 +1,28 @@
+{
+  "name": "curso-cypress",
+  "version": "1.0.0",
+  "description": "Curso de Cypress da Escola TAT",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saviojrc/cypresss.git"
+  },
+  "keywords": [
+    "cypress",
+    "test",
+    "automation",
+    "e2e"
+  ],
+  "author": "Savio Rodrigues",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/saviojrc/cypresss/issues"
+  },
+  "homepage": "https://github.com/saviojrc/cypresss#readme",
+  "dependencies": {
+    "cypress": "^9.5.0"
+  }
+}
