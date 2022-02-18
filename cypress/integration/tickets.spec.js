@@ -11,7 +11,7 @@ describe.only('Tickets', () => {
         cy.get("#last-name").type(secondName);
         cy.get("#email").type("saviojrc.1988@gmail.com");
         cy.get("#requests").type("Vegetarian");
-        cy.get("#signature").type(name + " " + secondName);
+        cy.get("#signature").type(`${name} ${secondName}`);
 
     });
 
