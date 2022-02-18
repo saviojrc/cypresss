@@ -33,7 +33,23 @@ describe.only('Tickets', () => {
         cy.get("#friend").uncheck();
     });
 
-    it.only("has 'TICKTBOX' header's heading", () => {
+    it("has 'TICKTBOX' header's heading", () => {
         cy.get("header h1").should("contain", "TICKETBOX");
+    });
+
+    it.only("alerts on invalid e-mail", () => {
+        cy.get("#email")
+            .as("email")
+            .type("saviojrc.1988-gmail.com");
+
+        cy.get("#email.invalid")
+            .should("exist");
+
+        cy.get("@email")
+            .clear()
+            .type("saviojrc.1988@gmail.com");
+
+        cy.get("#email.invalid")
+            .should("not.exist");
     });
 });
