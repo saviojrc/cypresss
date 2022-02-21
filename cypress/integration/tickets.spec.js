@@ -96,7 +96,7 @@ describe.only('Tickets', () => {
             .should("be.disabled");
     });
 
-    it.only("fills mandatory fields using support command", () => {
+    it("fills mandatory fields using support command", () => {
         const customer = {
             fistName: "João",
             lastName: "Silva",
