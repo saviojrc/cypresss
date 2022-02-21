@@ -3,15 +3,16 @@ describe.only('Tickets', () => {
     const uri = "https://ticket-box.s3.eu-central-1.amazonaws.com/index.html";
     const name = "SAVIO JAILSON";
     const secondName = "RODRIGUES COSTA";
+    const fullName = `${name} ${secondName}`;
 
     beforeEach(() => cy.visit(uri));
 
     it("fills all the text input fields ", () => {
-        cy.get("#first-name").type(name);
-        cy.get("#last-name").type(secondName);
+        cy.get("#first-name").type(`${name}`);
+        cy.get("#last-name").type(`${secondName}`);
         cy.get("#email").type("saviojrc.1988@gmail.com");
         cy.get("#requests").type("Vegetarian");
-        cy.get("#signature").type(`${name} ${secondName}`);
+        cy.get("#signature").type(`${fullName}`);
 
     });
 
@@ -37,7 +38,7 @@ describe.only('Tickets', () => {
         cy.get("header h1").should("contain", "TICKETBOX");
     });
 
-    it.only("alerts on invalid e-mail", () => {
+    it("alerts on invalid e-mail", () => {
         cy.get("#email")
             .as("email")
             .type("saviojrc.1988-gmail.com");
@@ -51,5 +52,68 @@ describe.only('Tickets', () => {
 
         cy.get("#email.invalid")
             .should("not.exist");
+    });
+
+    it("fills and reset the form", () => {
+
+        cy.get("#first-name")
+            .type(`${name}`);
+        cy.get("#last-name")
+            .type(`${secondName}`);
+        cy.get("#email")
+            .type("saviojrc.1988@gmail.com");
+        cy.get("#ticket-quantity")
+            .select("2");
+        cy.get("#vip")
+            .check();
+        cy.get("#friend")
+            .check();
+        cy.get("#publication")
+            .check();
+        cy.get("#requests")
+            .type("Vegetarian");
+
+        cy.get(".agreement p")
+            .should(
+                "contain",
+                `I, ${fullName}, wish to buy 2 VIP tickets.`
+            );
+
+
+        cy.get("#agree")
+            .click();
+        cy.get("#signature")
+            .type(`${fullName}`);
+
+        cy.get("button[type='submit']")
+            .as("submitButton")
+            .should("not.be.disabled");
+
+        cy.get("button[type='reset']")
+            .click();
+
+        cy.get("@submitButton")
+            .should("be.disabled");
+    });
+
+    it.only("fills mandatory fields using support command", () => {
+        const customer = {
+            fistName: "João",
+            lastName: "Silva",
+            email: "joaosilva@gmail.com"
+        };
+
+        cy.fillMandatoryFields(customer);
+
+        cy.get("button[type='submit']")
+            .as("submitButton")
+            .should("not.be.disabled");
+
+        cy.get("button[type='reset']").click();
+
+        cy.get("@submitButton")
+            .should("be.disabled");
+
+
     });
 });
