@@ -6,6 +6,6 @@ stages:
 end-to-end testing: 
   stage: e2e
   script: 
-    -nmp install
-    -nmp test
-    
+    - npm install
+    - npm test
+      

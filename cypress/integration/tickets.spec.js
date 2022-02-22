@@ -1,7 +1,7 @@
 describe.only('Tickets', () => {
 
     const uri = "https://ticket-box.s3.eu-central-1.amazonaws.com/index.html";
-    const name = "SAVIO JAILSON";
+    const name = "LUCAS";
     const secondName = "RODRIGUES COSTA";
     const fullName = `${name} ${secondName}`;
 
